@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Model\Balance;
+use App\Model\Historic;
 
 class User extends Authenticatable
 {
@@ -28,6 +30,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function balance(){
+        return $this->hasOne(Balance::class);
+    }
+    
+    public function historics(){
+        return $this->hasMany(Historic::class);
+    }
     /**
      * The attributes that should be cast to native types.
      *
