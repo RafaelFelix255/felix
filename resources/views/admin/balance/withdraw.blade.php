@@ -21,6 +21,7 @@
                 <div class="form-gruop">
                     <input name="value" id="value" class="form-control" type="number" step="0.01" maxlength="6" placeholder="Valor da Retirada">                
                 </div>
+                <br/>
                 <div class="form-gruop">
                     <button class="btn btn-success" type="submit">Sacar</button>         
                 </div>

@@ -3,11 +3,11 @@
 @section('title', 'Felix System')
 
 @section('content_header')
-    <h1>Fazer Recarga</h1>
+    <h1>Fazer Transferência</h1>
     <ol class="breadcrumb">
         <li><a href="">Dashboard</a></li>
         <li><a href="">Saldo</a></li>
-        <li><a href="">Depositar</li>     
+        <li><a href="">Transferir</li>     
     </ol>
 @stop
 @section('content')
@@ -15,19 +15,19 @@
         <div class="box-body">
             @include('admin.includes.alerts')
 
-            <form method="post" action="{{ route('deposit.store') }}">
+            <form method="post" action="{{ route('confirm.transfer') }}">
                 {!! csrf_field() !!}
-                
+            
                 <div class="form-gruop">
-                    <input name="value" id="value" class="form-control" type="number" step="0.01" maxlength="6" placeholder="Valor da Recarga">                
+                    <input name="sender" id="sender" class="form-control" type="text"  maxlength="150" placeholder="Email para transferência (Nome ou E-mail)">                
                 </div>
                 <br/>
                 <div class="form-gruop">
-                    <button class="btn btn-success" type="submit">Recarregar</button>         
+                    <button class="btn btn-success" type="submit">Localizar</button>         
                 </div>
 
                 <script>
-                    $inputEllent = document.getElementById("value").focus();
+                    $inputEllent = document.getElementById("sender").focus();
                 </script>
             </form>
         </div>

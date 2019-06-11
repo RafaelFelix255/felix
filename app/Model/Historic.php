@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Historic extends Model
 {
@@ -14,5 +15,24 @@ class Historic extends Model
         'user_id_transaction',
         'date'
     ];
+    public function type($type = null){
+        $types = [
+            'I' => 'Crédito',
+            'O' => 'Débito',
+            'T' => 'Débito Transf.',
+        ];
 
+        if (!$type){
+            return $types;
+        } else {
+            if ($this->user_id_transaction != null && $type === 'I'){
+                return 'Crédito Transf.';
+            } else {
+                return $types[$type];
+            }            
+        }
+    }
+    public function getDateAttribute($value){
+        return Carbon::parse($value)->format('d/m/Y');
+    }
 }

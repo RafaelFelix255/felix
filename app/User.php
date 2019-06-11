@@ -37,6 +37,14 @@ class User extends Authenticatable
     public function historics(){
         return $this->hasMany(Historic::class);
     }
+
+    public function getSender($sender){
+        return $this->where('name', 'LIKE', "%$sender%")
+                        ->orWhere('email', $sender)
+                        ->get()
+                        ->first();
+    }   
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -45,4 +53,5 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 }
