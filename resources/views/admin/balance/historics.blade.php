@@ -29,12 +29,20 @@
                             <td class="text-center">{{ $historic->date }}</td>
                             <td class="text-left">R$ {{ number_format($historic->amount, 2, ',', '.') }}</td>
                             <td class="text-center">{{ $historic->type($historic->type) }}</td>
-                            <td class="text-center">{{ $historic->user_id_transaction }}</td>
+                            <td class="text-center">
+                                @if ($historic->user_id_transaction)
+                                    {{ $historic->userSender->name }}
+                                @else
+                                    -
+                                @endif
+                            </td>
                         </tr>
                     @empty
                     @endforelse
                 </tbody>                
             </table>   
+
+            {!! $historics->links() !!}
         </div>
     </div>
 @stop

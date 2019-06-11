@@ -4,6 +4,8 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use App\User;
+
 
 class Historic extends Model
 {
@@ -32,6 +34,15 @@ class Historic extends Model
             }            
         }
     }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function userSender(){
+        return $this->belongsTo(User::class, 'user_id_transaction');
+    }
+
     public function getDateAttribute($value){
         return Carbon::parse($value)->format('d/m/Y');
     }
